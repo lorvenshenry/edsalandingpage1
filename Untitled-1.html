@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Desafios de um Líder Cristão | Jean Sony Dupont</title>
+    
+    
+    <style>
+        :root {
+            --gold: #fcc43c;
+            --gold-dark: #b8860b;
+            --bg-black: #000000;
+            --bg-card: #121212;
+            --text-gray: #cccccc;
+            --accent-red: #e11d1d;
+            --green-price: #2ecc71;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-black);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- MODAL DE IDIOMA --- */
+        #language-modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .modal-conteudo {
+            background: #111;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--gold);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+        }
+
+        .modal-conteudo h2 { font-size: 1.3rem; margin: 20px 0; color: #fff; }
+
+        .botoes-idioma { display: flex; flex-direction: column; gap: 15px; }
+
+        .botoes-idioma button {
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background: #222;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .botoes-idioma button:hover { background: var(--gold); color: #000; }
+
+        /* --- 1. HERO SECTION --- */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 8%;
+            min-height: 85vh;
+            background: radial-gradient(circle at 80% 50%, rgba(252, 196, 60, 0.15) 0%, rgba(0,0,0,1) 70%);
+        }
+        .hero-content { flex: 1; min-width: 320px; max-width: 650px; }
+        .logo-img-top { max-width: 150px; margin-bottom: 20px; display: block; }
+        h1 { font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.2; margin-bottom: 20px; font-weight: 800; }
+        .amarelo { color: var(--gold); }
+        .hero-p { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 35px; }
+
+        .botao {
+            display: inline-block;
+            padding: 20px 45px;
+            background: var(--gold);
+            color: #000;
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(252, 196, 60, 0.2);
+            text-align: center;
+        }
+        .botao:hover { transform: scale(1.05); background: #fff; }
+
+        .hero-img { flex: 1; display: flex; justify-content: center; min-width: 320px; }
+        .hero-img img { max-width: 100%; height: auto; mask-image: linear-gradient(to bottom, black 85%, transparent 100%); }
+
+        /* --- 2. CONTADOR --- */
+        .contador-container {
+            max-width: 900px;
+            margin: -50px auto 60px;
+            background: var(--bg-card);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        .timer-grid { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .time-unit { background: #1a1a1a; padding: 15px; min-width: 80px; border-radius: 10px; border-bottom: 4px solid var(--accent-red); }
+        .time-unit span { font-size: 1.8rem; font-weight: 800; display: block; }
+        .time-unit label { font-size: 0.7rem; color: #777; text-transform: uppercase; }
+
+        /* --- 3. DORES E PROBLEMAS --- */
+        .problemas { padding: 80px 8%; text-align: center; }
+        .versiculo-box {
+            font-family: 'Playfair Display', serif;
+            font-style: italic; font-size: 1.4rem; color: var(--gold);
+            padding: 30px; border-top: 1px solid #222; border-bottom: 1px solid #222; margin-bottom: 50px;
+        }
+        .lista-dores { max-width: 700px; margin: 0 auto; text-align: left; }
+        .dor-item {
+            background: #111; padding: 20px; border-radius: 10px; margin-bottom: 15px;
+            display: flex; align-items: center; border-left: 4px solid var(--accent-red);
+        }
+        .dot { width: 8px; height: 8px; background: var(--accent-red); border-radius: 50%; margin-right: 15px; }
+
+        /* --- 4. SOBRE O EBOOK --- */
+        .jornada-foto { padding: 100px 0 0 0; background: #000; display: flex; align-items: stretch; overflow: hidden; }
+        .jornada-texto { flex: 1.2; padding: 40px 5% 80px 8%; }
+        .jornada-texto h2 { font-size: 1.8rem; font-weight: 900; line-height: 1.3; margin-bottom: 30px; text-transform: uppercase; }
+        .jornada-texto p { margin-bottom: 25px; color: var(--text-gray); font-size: 1.05rem; }
+        .jornada-img { flex: 1; position: relative; background: #111; }
+        .jornada-img img { width: 100%; height: 100%; object-fit: cover; clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); }
+
+        /* --- 5. PARA QUEM É --- */
+        .para-quem { padding: 100px 8%; display: flex; flex-wrap: wrap; gap: 50px; align-items: flex-start; background: #050505; }
+        .para-quem-info { flex: 1; min-width: 300px; }
+        .para-quem-grid { flex: 1.5; display: flex; flex-direction: column; gap: 15px; }
+        .card-quem { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; display: flex; align-items: center; gap: 20px; transition: 0.3s; }
+        .check-circle { min-width: 28px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 14px; font-weight: bold; }
+        .foto-quem {
+    width: 100%;
+    max-width: 991px; /* Ajuste o tamanho conforme preferir */
+    border-radius: 15px;
+    margin-top: 25px;
+    box-shadow: 0 10px 30px rgba(252, 196, 60, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 992px) {
+    .foto-quem {
+        margin: 25px auto 40px;
+        display: block;
+    }
+}
+
+
+        /* --- 6. TICKER --- */
+        .ticker { background: var(--accent-red); color: #fff; padding: 15px 0; overflow: hidden; white-space: nowrap; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+        .ticker-content { display: inline-block; animation: scroll 30s linear infinite; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* --- 7. OFERTA FINAL --- */
+        .secao-oferta { padding: 80px 5%; display: flex; justify-content: center; background: #000; }
+        .oferta-card { background: #111; border: 1px solid #333; border-radius: 20px; padding: 40px; max-width: 500px; width: 100%; text-align: center; }
+        .oferta-card h2 { font-size: 1.4rem; margin-bottom: 20px; text-transform: uppercase; }
+        .oferta-card ul { list-style: none; text-align: left; margin-bottom: 30px; font-size: 0.9rem; color: #ccc; }
+        .oferta-card ul li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .valor-antigo { text-decoration: line-through; color: var(--accent-red); font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; }
+        .caixa-preco { background: var(--green-price); color: #fff; padding: 20px; border-radius: 15px; margin: 20px 0; font-weight: 900; }
+        .caixa-preco span { display: block; font-size: 0.8rem; text-transform: uppercase; opacity: 0.9; }
+        .caixa-preco .valor { font-size: 2.8rem; line-height: 1; }
+
+        @media (max-width: 992px) {
+            .hero, .para-quem, .jornada-foto { flex-direction: column; text-align: center; }
+            .jornada-img img { clip-path: none; height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DE IDIOMA -->
+    <div id="language-modal">
+        <div class="modal-conteudo">
+            <img src="capa.png" width="80">
+            <h2>Escolha seu idioma / Choisissez votre langue</h2>
+            <div class="botoes-idioma">
+                <button onclick="changeLang('pt')">🇧🇷 Português</button>
+                <button onclick="changeLang('fr')">🇫🇷 Français</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="logo.png" class="logo-img-top" alt="Logo">
+            <h1 id="hero-title">Domine os Fundamentos da Liderança Cristã e <span class="amarelo">Transforme seu Ministério com Base Bíblica</span></h1>
+            <p class="hero-p" id="hero-desc">Após anos de estudos e experiências no ministério, este eBook foi criado para quem deseja profundidade real na Palavra de Deus e crescimento espiritual consistente.</p>
+            <a href="#oferta" class="botao" id="hero-cta">👉 Quero Acessar o eBook Agora</a>
+        </div>
+        <div class="hero-img"><img src="livro.png" alt="Capa"></div>
+    </section>
+
+    <!-- 2. CONTADOR -->
+    <div class="contador-container">
+        <h3 id="timer-msg">Aproveite esta oportunidade única!</h3>
+        <p style="font-size: 0.8rem; color: #888; margin-top: 5px;" id="timer-sub">📖 Conteúdo disponível imediatamente após a compra</p>
+        <div class="timer-grid">
+            <div class="time-unit"><span id="dias">00</span><label id="lbl-dias">Dias</label></div>
+            <div class="time-unit"><span id="horas">00</span><label id="lbl-horas">Horas</label></div>
+            <div class="time-unit"><span id="min">00</span><label id="lbl-min">Mins</label></div>
+            <div class="time-unit"><span id="seg">00</span><label id="lbl-seg">Segs</label></div>
+        </div>
+    </div>
+
+    <!-- 3. PROBLEMAS -->
+    <section class="problemas">
+        <div class="versiculo-box" id="versiculo">
+            “Quando vier o Filho do Homem, achará, porventura, fé na terra?”<br>
+            <span style="font-size: 1rem; font-style: normal;">Lucas 18:8</span>
+        </div>
+        <div class="lista-dores">
+            <div class="dor-item"><div class="dot"></div> <span id="dor1">Dificuldade em interpretar as Escrituras Sagradas</span></div>
+            <div class="dor-item"><div class="dot"></div> <span id="dor2">Insegurança ao ensinar ou liderar no ministério</span></div>
+            <div class="dor-item"><div class="dot"></div> <span id="dor3">Falta de profundidade bíblica para orientar outras pessoas</span></div>
+        </div>
+    </section>
+
+    <!-- 4. SOBRE O EBOOK -->
+    <section class="jornada-foto">
+        <div class="jornada-texto">
+            <h2 id="sobre-title">SEJA PARA INICIAR SUA JORNADA NA FÉ, APROFUNDAR SEU CONHECIMENTO OU <span class="amarelo">FORTALECER SEU MINISTÉRIO…</span></h2>
+            <p id="sobre-p1">O eBook "5 Desafios de um Líder Cristão no Ministério" oferece a base que você precisa para compreender melhor a Palavra de Deus, enfrentar desafios espirituais e crescer como líder.</p>
+            <p id="sobre-p2">Com uma abordagem clara e prática, você aprenderá princípios essenciais para viver uma fé mais sólida e liderar com sabedoria.</p>
+            <p id="sobre-p3">Você será guiado através de ensinamentos que fortalecem sua caminhada espiritual e sua capacidade de impactar vidas.</p>
+            <a href="#oferta" class="botao" id="sobre-cta">👉 Quero Ler o eBook Agora</a>
+        </div>
+        <div class="jornada-img"><img src="capa.png"></div>
+    </section>
+
+       <!-- 5. PARA QUEM É -->
+    <section class="para-quem">
+        <div class="para-quem-info">
+            <h2 id="quem-title">🎯 PARA QUEM É <br><span class="amarelo">ESSE EBOOK?</span></h2>
+            <img src="foto do pastor.png" class="foto-quem" alt="Liderança Cristã">
+        </div>
+        
+        <div class="para-quem-grid">
+            <div class="card-quem"><div class="check-circle">✔</div> <span id="quem1">Líderes que desejam crescer espiritualmente e liderar melhor</span></div>
+            <div class="card-quem"><div class="check-circle">✔</div> <span id="quem2">Pessoas que querem entender mais profundamente a Palavra</span></div>
+            <div class="card-quem"><div class="check-circle">✔</div> <span id="quem3">Cristãos que se sentem desmotivados ou perdidos</span></div>
+            <div class="card-quem"><div class="check-circle">✔</div> <span id="quem4">Quem deseja fortalecer sua fé e propósito</span></div>
+            <div class="card-quem"><div class="check-circle">✔</div> <span id="quem5">Pessoas que querem impactar outras vidas através do Evangelho</span></div>
+        </div>
+    </section>
+
+
+    <!-- 6. TICKER -->
+    <div class="ticker">
+        <div class="ticker-content" id="ticker-text">
+            5 DESAFIOS DE UM LÍDER CRISTÃO • DISPONÍVEL AGORA • APRENDA A VENCER OS DESAFIOS DO MINISTÉRIO • FORTALEÇA SUA FÉ • 
+        </div>
+    </div>
+
+    <!-- 7. OFERTA FINAL -->
+    <section class="secao-oferta" id="oferta">
+        <div class="oferta-card">
+            <h2 id="oferta-title">🎁 O QUE VOCÊ RECEBE:</h2>
+            <ul id="oferta-list">
+                <li>✅ eBook completo em PDF</li>
+                <li>✅ Conteúdo direto e prático</li>
+                <li>✅ Leitura rápida e transformadora</li>
+                <li>✅ Acesso imediato após a compra</li>
+            </ul>
+            <p style="margin-top: 15px; font-size: 1.1rem; color: #888;" id="de-text">De:</p>
+            <p class="valor-antigo">R$ 49,90</p>
+            <div class="caixa-preco">
+                <span id="por-text">Por apenas:</span>
+                <div class="valor">R$ 15,99</div>
+            </div>
+            <a href="https://pay.hotmart.com/Y103793428R?sck=HOTMART_PRODUCT_PAGE&off=tg0s6uy9&hotfeature=32&_gl=1*1wx174n*_gcl_au*MjA3ODMwMTE3Ni4xNzc4MDI1NjYx*_ga*OTE5NTc5MzQwLjE3NzgwMjU2NDY.*_ga_GQH2V1F11Q*czE3NzgwMjU2NDUkbzEkZzEkdDE3NzgwMjcxNDckajQ5JGwwJGgxMDM5Njk1MjU1&bid=1778027179162" class="botao" style="width: 100%;" id="final-cta">👉 GARANTIR MEU EBOOK AGORA</a>
+            <div style="margin-top: 30px; font-size: 0.8rem; color: #666; display: flex; flex-direction: column; gap: 5px;">
+                <span id="gar1">🛡️ Compra 100% segura</span>
+                <span id="gar2">🛡️ Acesso imediato</span>
+                <span id="gar3">🛡️ 7 dias de garantia</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const translations = {
+        pt: {
+            link: 'https://pay.hotmart.com/Y103793428R?sck=HOTMART_PRODUCT_PAGE&off=tg0s6uy9&hotfeature=32&_gl=1*1wx174n*_gcl_au*MjA3ODMwMTE3Ni4xNzc4MDI1NjYx*_ga*OTE5NTc5MzQwLjE3NzgwMjU2NDY.*_ga_GQH2V1F11Q*czE3NzgwMjU2NDUkbzEkZzEkdDE3NzgwMjcxNDckajQ5JGwwJGgxMDM5Njk1MjU1&bid=1778027179162',
+            heroTitle: 'Domine os Fundamentos da Liderança Cristã e <span class="amarelo">Transforme seu Ministério com Base Bíblica</span>',
+            heroDesc: 'Após anos de estudos e experiências no ministério, este eBook foi criado para quem deseja profundidade real na Palavra de Deus e crescimento espiritual consistente.',
+            heroCta: '👉 Quero Acessar o eBook Agora',
+            timerMsg: 'Aproveite esta oportunidade única!',
+            timerSub: '📖 Conteúdo disponível imediatamente após a compra',
+            lblDias: 'Dias',
+            lblHoras: 'Horas',
+            lblMin: 'Mins',
+            lblSeg: 'Segs',
+            versiculo: '“Quando vier o Filho do Homem, achará, porventura, fé na terra?”<br><span style="font-size: 1rem; font-style: normal;">Lucas 18:8</span>',
+            dor1: 'Dificuldade em interpretar as Escrituras Sagradas',
+            dor2: 'Insegurança ao ensinar ou liderar no ministério',
+            dor3: 'Falta de profundidade bíblica para orientar outras pessoas',
+            sobreTitle: 'SEJA PARA INICIAR SUA JORNADA NA FÉ, APROFUNDAR SEU CONHECIMENTO OU <span class="amarelo">FORTALECER SEU MINISTÉRIO…</span>',
+            sobreP1: 'O eBook "5 Desafios de um Líder Cristão no Ministério" oferece a base que você precisa para compreender melhor a Palavra de Deus, enfrentar desafios espirituais e crescer como líder.',
+            sobreP2: 'Com uma abordagem clara e prática, você aprenderá princípios essenciais para viver uma fé mais sólida e liderar com sabedoria.',
+            sobreP3: 'Você será guiado através de ensinamentos que fortalecem sua caminhada espiritual e sua capacidade de impactar vidas.',
+            sobreCta: '👉 Quero Ler o eBook Agora',
+            quemTitle: '🎯 PARA QUEM É <br><span class="amarelo">ESSE EBOOK?</span>',
+            quem1: 'Líderes que desejam crescer espiritualmente e liderar melhor',
+            quem2: 'Pessoas que querem entender mais profundamente a Palavra',
+            quem3: 'Cristãos que se sentem desmotivados ou perdidos',
+            quem4: 'Quem deseja fortalecer sua fé e propósito',
+            quem5: 'Pessoas que querem impactar outras vidas através do Evangelho',
+            ticker: '5 DESAFIOS DE UM LÍDER CRISTÃO • DISPONÍVEL AGORA • APRENDA A VENCER OS DESAFIOS DO MINISTÉRIO • FORTALEÇA SUA FÉ • ',
+            ofertaTitle: '🎁 O QUE VOCÊ RECEBE:',
+            ofertaList: '<li>✅ eBook completo em PDF</li><li>✅ Conteúdo direto e prático</li><li>✅ Leitura rápida e transformadora</li><li>✅ Acesso imediato após a compra</li>',
+            deText: 'De:',
+            porText: 'Por apenas:',
+            finalCta: '👉 GARANTIR MEU EBOOK AGORA',
+            gar1: '🛡️ Compra 100% segura',
+            gar2: '🛡️ Acesso imediato',
+            gar3: '🛡️ 7 dias de garantia',
+            whatsTitle: 'Tem alguma dúvida?',
+            whatsDesc: 'Caso tenha qualquer dúvida sobre a compra, dificuldade de acesso ou qualquer outro problema relacionado ao eBook, basta falar conosco no WhatsApp.',
+            whatsBtn: 'ATENDIMENTO WHATSAPP'
+        },
+
+        fr: {
+            link: 'https://pay.hotmart.com/Q103875229U?bid=1778025710075',
+            heroTitle: 'Maîtrisez les Fondamentaux du Leadership Chrétien et <span class="amarelo">Transformez votre Ministère sur une Base Biblique</span>',
+            heroDesc: 'Après des années d\'études et d\'expériences dans le ministère, cet eBook a été créé pour ceux qui désirent une réelle profondeur dans la Parole de Dieu et une croissance spirituelle constante.',
+            heroCta: '👉 Je veux accéder à l\'eBook maintenant',
+            timerMsg: 'Profitez de cette opportunité unique !',
+            timerSub: '📖 Contenu disponible immédiatement après l\'achat',
+            lblDias: 'Jours',
+            lblHoras: 'Heures',
+            lblMin: 'Mins',
+            lblSeg: 'Secs',
+            versiculo: '“Quand le Fils de l\'homme viendra, trouvera-t-il la foi sur la terre?”<br><span style="font-size: 1rem; font-style: normal;">Luc 18:8</span>',
+            dor1: 'Difficulté à interpréter les Saintes Écritures',
+            dor2: 'Insécurité lors de l\'enseignement ou de la direction du ministère',
+            dor3: 'Manque de profondeur biblique pour guider les autres',
+            sobreTitle: 'QUE CE SOIT POUR COMMENCER VOTRE VOYAGE DANS LA FOI OU <span class="amarelo">RENFORCER VOTRE MINISTÈRE…</span>',
+            sobreP1: 'L\'eBook "5 Défis d\'un Leader Chrétien dans le Ministère" offre la base dont vous avez besoin pour mieux comprendre la Parole de Dieu.',
+            sobreP2: 'Avec une approche claire et pratique, vous apprendrez les principes essentiels pour vivre une foi plus solide.',
+            sobreP3: 'Vous serez guidé à travers des enseignements qui renforcent votre marche spirituelle.',
+            sobreCta: '👉 Je veux lire l\'eBook maintenant',
+            quemTitle: '🎯 À QUI S\'ADRESSE <br><span class="amarelo">CET EBOOK ?</span>',
+            quem1: 'Leaders qui souhaitent grandir spirituellement et mieux diriger',
+            quem2: 'Personnes qui veulent comprendre la Parole plus profondément',
+            quem3: 'Chrétiens qui se sentent découragés ou perdus',
+            quem4: 'Ceux qui veulent renforcer leur foi et leur but',
+            quem5: 'Personnes qui veulent impacter d\'autres vies par l\'Évangile',
+            ticker: '5 DÉFIS D\'UN LEADER CHRÉTIEN • DISPONIBLE MAINTENANT • APPRENEZ À VAINCRE LES DÉFIS • FORTIFIEZ VOTRE FOI • ',
+            ofertaTitle: '🎁 CE QUE VOUS RECEVEZ :',
+            ofertaList: '<li>✅ eBook complet en PDF</li><li>✅ Contenu direct et pratique</li><li>✅ Lecture rapide et transformatrice</li><li>✅ Accès immédiat après l\'achat</li>',
+            deText: 'De :',
+            porText: 'Pour seulement :',
+            finalCta: '👉 GARANTIR MON EBOOK MAINTENANT',
+            gar1: '🛡️ Achat 100% sécurisé',
+            gar2: '🛡️ Accès immédiat',
+            gar3: '🛡️ 7 jours de garantie',
+            whatsTitle: 'Avez-vous des questions ?',
+            whatsDesc: "Si vous avez des questions concernant l'achat ou l'accès à l'eBook, contactez-nous sur WhatsApp.",
+            whatsBtn: 'SERVICE WHATSAPP'
+        }
+    };
+
+    function changeLang(lang) {
+        document.getElementById('language-modal').style.display = 'none';
+
+        const t = translations[lang];
+
+        const botoes = document.querySelectorAll('.botao');
+
+        botoes.forEach(btn => {
+            if (btn.tagName === 'A') {
+                btn.href = t.link;
+            }
+        });
+
+        document.getElementById('hero-title').innerHTML = t.heroTitle;
+        document.getElementById('hero-desc').innerText = t.heroDesc;
+        document.getElementById('hero-cta').innerText = t.heroCta;
+        document.getElementById('timer-msg').innerText = t.timerMsg;
+        document.getElementById('timer-sub').innerText = t.timerSub;
+
+        document.getElementById('lbl-dias').innerText = t.lblDias;
+        document.getElementById('lbl-horas').innerText = t.lblHoras;
+        document.getElementById('lbl-min').innerText = t.lblMin;
+        document.getElementById('lbl-seg').innerText = t.lblSeg;
+
+        document.getElementById('versiculo').innerHTML = t.versiculo;
+
+        document.getElementById('dor1').innerText = t.dor1;
+        document.getElementById('dor2').innerText = t.dor2;
+        document.getElementById('dor3').innerText = t.dor3;
+
+        document.getElementById('sobre-title').innerHTML = t.sobreTitle;
+        document.getElementById('sobre-p1').innerText = t.sobreP1;
+        document.getElementById('sobre-p2').innerText = t.sobreP2;
+        document.getElementById('sobre-p3').innerText = t.sobreP3;
+        document.getElementById('sobre-cta').innerText = t.sobreCta;
+
+        document.getElementById('quem-title').innerHTML = t.quemTitle;
+        document.getElementById('quem1').innerText = t.quem1;
+        document.getElementById('quem2').innerText = t.quem2;
+        document.getElementById('quem3').innerText = t.quem3;
+        document.getElementById('quem4').innerText = t.quem4;
+        document.getElementById('quem5').innerText = t.quem5;
+
+        document.getElementById('ticker-text').innerText = t.ticker;
+
+        document.getElementById('oferta-title').innerText = t.ofertaTitle;
+        document.getElementById('oferta-list').innerHTML = t.ofertaList;
+
+        document.getElementById('de-text').innerText = t.deText;
+        document.getElementById('por-text').innerText = t.porText;
+        document.getElementById('final-cta').innerText = t.finalCta;
+
+        document.getElementById('gar1').innerText = t.gar1;
+        document.getElementById('gar2').innerText = t.gar2;
+        document.getElementById('gar3').innerText = t.gar3;
+
+        document.getElementById('whats-title').innerText = t.whatsTitle;
+        document.getElementById('whats-desc').innerText = t.whatsDesc;
+        document.getElementById('whats-btn').innerText = t.whatsBtn;
+    }
+
+    const dataFinal = new Date("2026-05-10 23:59:59").getTime();
+
+    function atualizarTimer() {
+        const agora = new Date().getTime();
+        const diff = dataFinal - agora;
+
+        if (diff <= 0) return;
+
+        document.getElementById("dias").innerText =
+            Math.floor(diff / (1000 * 60 * 60 * 24))
+            .toString()
+            .padStart(2, '0');
+
+        document.getElementById("horas").innerText =
+            Math.floor((diff / (1000 * 60 * 60)) % 24)
+            .toString()
+            .padStart(2, '0');
+
+        document.getElementById("min").innerText =
+            Math.floor((diff / (1000 * 60)) % 60)
+            .toString()
+            .padStart(2, '0');
+
+        document.getElementById("seg").innerText =
+            Math.floor((diff / 1000) % 60)
+            .toString()
+            .padStart(2, '0');
+    }
+
+    atualizarTimer();
+    setInterval(atualizarTimer, 1000);
+</script>
+<!-- SEÇÃO WHATSAPP -->
+<section class="secao-whatsapp">
+    <div class="container-whats">
+        <div class="whats-texto">
+            <h2 id="whats-title">Tem alguma dúvida?</h2>
+            <p id="whats-desc">
+                Caso tenha qualquer dúvida sobre a compra, dificuldade de acesso ou qualquer outro problema relacionado ao eBook, basta falar conosco no WhatsApp.
+            </p>
+        </div>
+
+        <a href="https://wa.me/5547996175406?text=Olá%20tenho%20interesse%20no%20eBook"
+           target="_blank"
+           class="btn-whats">
+
+            <span id="whats-btn">ATENDIMENTO WHATSAPP</span> 🟢
+        </a>
+    </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="footer">
+    <div class="footer-conteudo">
+        <img src="capa.png" width="60">
+
+        <p>
+            Copyright © 2026 • Jean Sony Dupont.
+            Todos os direitos reservados.
+        </p>
+
+        <p style="font-size: 0.7rem; color: #555; max-width: 800px; margin: 20px auto;">
+            Este site não faz parte do site do FACEBOOK, Hotmart, META ou META Inc.
+            Além disso, este site NÃO é endossado pelo Facebook de forma alguma.
+            FACEBOOK é uma marca comercial da META Inc.
+        </p>
+
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #888;">
+            Desenvolvido por
+            <strong style="color: var(--gold);">
+                Arete Group
+            </strong>
+        </p>
+    </div>
+</footer>
+
+<style>
+/* SEÇÃO WHATSAPP */
+.secao-whatsapp {
+    background: linear-gradient(90deg, #00a859 0%, #00d27f 100%);
+    padding: 60px 8%;
+    color: #fff;
+}
+
+.container-whats {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.whats-texto h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.whats-texto p {
+    max-width: 600px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.btn-whats {
+    background: #fff;
+    color: #00a859;
+
+    padding: 20px 40px;
+    border-radius: 50px;
+
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 1rem;
+
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.btn-whats:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* RODAPÉ */
+.footer {
+    background: #000;
+    padding: 60px 5% 40px;
+
+    text-align: center;
+    border-top: 1px solid #111;
+}
+
+.footer-conteudo p {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+
+    .container-whats {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .btn-whats {
+        width: 100%;
+    }
+}
+</style>
+</body>
+</html>
